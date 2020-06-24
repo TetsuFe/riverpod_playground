@@ -1,6 +1,6 @@
 # riverpodplayground
 
-Use riverpod and think
+Use Riverpod and think
 
 
 ## setup
