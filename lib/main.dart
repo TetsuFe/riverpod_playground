@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpodplayground/use_computed.dart';
 
 // We create a "provider", which will store a value (here "Hello world").
 // By using a provider, this allows us to mock/override the value exposed.
-final helloWorldProvider = Provider((_) => 'Hello world');
+final helloWorldProvider = Provider((_) => HelloWorldText());
+
+class HelloWorldText {
+  String get text => 'Hello world';
+}
 
 void main() {
   runApp(
@@ -21,16 +26,10 @@ void main() {
 class MyApp extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    // To read our provider, we can use the hook "useProvider".
-    // This is only possible because MyApp is a HookWidget.
-    final String value = useProvider(helloWorldProvider);
-
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: Text('Example')),
-        body: Center(
-          child: Text(value),
-        ),
+        body: Center(child: ComputedText()),
       ),
     );
   }
